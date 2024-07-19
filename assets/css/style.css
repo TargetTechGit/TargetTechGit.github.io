@@ -468,6 +468,7 @@ p.blog-text{
     border-radius: 3px; 
     transition:.4s;  
 }
+
 .services-group{
   padding: 10px;
   background:#061F20;
@@ -531,11 +532,8 @@ footer h3 {
 #social-icons .btn-group:hover {
     color: #ffffff;
 }
-
-.copyright {
-    color: #fff;
-    padding: 20px 0px 10px 0px;
-    background-color: rgb(23, 23, 23);
+.copyright-text {
+  color: rgba(255, 255, 255, 0.8); /* Daha beyaz ama tam beyaz değil */
 }
 
 /*
@@ -750,5 +748,109 @@ footer h3 {
   }
   .carousel-caption .carousel-title {
     font-size: 14px;
+  }
+}
+
+/*
+* ==========================================================================
+* Last
+* ==========================================================================
+*/
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #2c3e50; /* Sayfanın arka planını koyu gri yaptık */
+  margin: 0;
+  padding: 0;
+  color: white; /* Tüm metinleri beyaz yaptık */
+}
+
+.navbar {
+  background-color: #1a252f; /* Navbar arka plan rengini koyu gri yaptık */
+  border: none;
+  border-radius: 0;
+  margin-bottom: 0;
+  font-weight: bold;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.navbar .navbar-header .navbar-toggle {
+  border: none;
+  background: #fff;
+}
+
+.navbar .navbar-header .navbar-toggle .icon-bar {
+  background: #2c3e50;
+}
+
+.navbar .navbar-nav li a {
+  color: #fff; /* Beyaz yazı rengi */
+  font-size: 16px;
+  padding: 15px 20px;
+  transition: background 0.3s, color 0.3s;
+  border-radius: 4px;
+  margin: 5px;
+}
+
+.navbar .navbar-nav li a:hover, 
+.navbar .navbar-nav li.active a {
+  background-color: #1abc9c; /* Hover ve aktif durum için yeşil arka plan rengi */
+  color: #fff;
+}
+
+.navbar .navbar-nav li a span {
+  color: #fff;
+  font-weight: bold;
+}
+
+.navbar .navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .navbar-logo {
+  width: 40px; /* Logonun genişliği */
+  height: auto;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.navbar .brand-text {
+  color: #000; /* Siyah yazı rengi */
+  font-size: 24px;
+  font-weight: bold;
+  font-family: 'Raleway', sans-serif; /* Estetik yazı tipi */
+  letter-spacing: 2px; /* Harf aralığı */
+}
+
+.services-section .services-group {
+  padding: 10px;
+  background: #061F20;
+  color: white;
+  margin-bottom: 20px;
+  text-align: center;
+  border-radius: 5px; /* Köşeleri yuvarladık */
+}
+
+.services-section .services-icon {
+  color: #1abc9c;
+  margin-bottom: 20px;
+  font-size: 3em; /* İkon boyutunu büyüttük */
+}
+
+@media (max-width: 768px) {
+  .navbar .navbar-nav {
+      float: none;
+      margin: 0;
+  }
+
+  .navbar .navbar-nav li {
+      float: none;
+      width: 100%;
+  }
+
+  .navbar .navbar-nav li a {
+      text-align: center;
+      padding: 10px 0;
   }
 }
