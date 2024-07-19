@@ -146,9 +146,12 @@ float: right;
 }
 
 body {
-    font-size: 15px;
-    line-height: 24px;
-    background:#F8FAFF;
+  font-family: 'Roboto', sans-serif;
+  background-color: #ECEEF1; /* Açık gri arka plan */
+  margin: 0;
+  padding: 0;
+  color: #333; /* Metin rengini koyu gri yaptık */
+  line-height: 1.6;
 }
 
 a {
@@ -354,9 +357,10 @@ address {
     color:#84d7bd;
 }
 
-.featured-img{
+.featured-img {
     padding: 0px 15px 15px 0;
-
+    width: 100%;
+    display: block;
 }
 p.blog-text{   
     font-size: 16px;
@@ -757,50 +761,47 @@ footer h3 {
 * ==========================================================================
 */
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #2c3e50; /* Sayfanın arka planını koyu gri yaptık */
+  font-family: 'Roboto', sans-serif;
+  background-color: #2c3e50;
   margin: 0;
   padding: 0;
-  color: white; /* Tüm metinleri beyaz yaptık */
+  color: #ecf0f1;
+  line-height: 1.6;
 }
+/**/
 
 .navbar {
-  background-color: #1a252f; /* Navbar arka plan rengini koyu gri yaptık */
+  background-color: rgba(26, 37, 47, 0.95);
   border: none;
-  border-radius: 0;
-  margin-bottom: 0;
-  font-weight: bold;
-  padding-top: 15px;
-  padding-bottom: 15px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 10px 0;
+  transition: all 0.2s ease;
 }
 
 .navbar .navbar-header .navbar-toggle {
   border: none;
-  background: #fff;
+  background: transparent;
 }
 
 .navbar .navbar-header .navbar-toggle .icon-bar {
-  background: #2c3e50;
+  background: #ecf0f1;
 }
 
 .navbar .navbar-nav li a {
-  color: #fff; /* Beyaz yazı rengi */
+  color: #ecf0f1;
   font-size: 16px;
-  padding: 15px 20px;
-  transition: background 0.3s, color 0.3s;
-  border-radius: 4px;
+  padding: 10px 20px;
+  transition: all 0.2s ease;
+  border-radius: 25px;
   margin: 5px;
 }
 
-.navbar .navbar-nav li a:hover, 
+.navbar .navbar-nav li a:hover,
 .navbar .navbar-nav li.active a {
-  background-color: #1abc9c; /* Hover ve aktif durum için yeşil arka plan rengi */
+  background-color: #1abc9c;
   color: #fff;
-}
-
-.navbar .navbar-nav li a span {
-  color: #fff;
-  font-weight: bold;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(26, 188, 156, 0.3);
 }
 
 .navbar .navbar-brand {
@@ -809,48 +810,67 @@ body {
 }
 
 .navbar .navbar-logo {
-  width: 40px; /* Logonun genişliği */
+  width: 70px;
   height: auto;
-  display: inline-block;
-  margin-right: 10px;
+  margin-right: 15px;
+  transition: transform 0.2s ease;
+}
+
+.navbar .navbar-logo:hover {
+  transform: scale(1.05);
 }
 
 .navbar .brand-text {
-  color: #000; /* Siyah yazı rengi */
-  font-size: 24px;
-  font-weight: bold;
-  font-family: 'Raleway', sans-serif; /* Estetik yazı tipi */
-  letter-spacing: 2px; /* Harf aralığı */
+  color: #000; /* Siyah renk */
+  font-size: 20px;
+  font-weight: 400;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 4px;
 }
 
 .services-section .services-group {
-  padding: 10px;
-  background: #061F20;
-  color: white;
-  margin-bottom: 20px;
+  padding: 25px;
+  background: linear-gradient(135deg, #061F20, #0B3536);
+  color: #ecf0f1;
+  margin-bottom: 25px;
   text-align: center;
-  border-radius: 5px; /* Köşeleri yuvarladık */
+  border-radius: 10px;
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+.services-section .services-group:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 20px rgba(0,0,0,0.15);
 }
 
 .services-section .services-icon {
   color: #1abc9c;
-  margin-bottom: 20px;
-  font-size: 3em; /* İkon boyutunu büyüttük */
+  margin-bottom: 15px;
+  font-size: 3.5em;
+  transition: all 0.2s ease;
+}
+
+.services-section .services-group:hover .services-icon {
+  transform: scale(1.05);
+  color: #16a085;
 }
 
 @media (max-width: 768px) {
   .navbar .navbar-nav {
-      float: none;
-      margin: 0;
-  }
-
-  .navbar .navbar-nav li {
-      float: none;
-      width: 100%;
+    margin: 0;
   }
 
   .navbar .navbar-nav li a {
-      text-align: center;
-      padding: 10px 0;
+    text-align: center;
+    padding: 12px 0;
+  }
+
+  .navbar .navbar-brand {
+    padding-left: 15px;
+  }
+
+  .services-section .services-group {
+    margin-bottom: 20px;
   }
 }
