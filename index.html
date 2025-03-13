@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Target Tech Yazılım - Ana Sayfa</title>
   
-  <!-- Favicon (images/favicon.ico) -->
   <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
   
   <link rel="stylesheet" href="css/style.css" />
@@ -15,12 +14,6 @@
   />
 
   <style>
-    /* 
-      HERO BÖLÜMÜ: 
-      - Koyu mavi bir gradyan arka plan 
-      - Canvas en arkada 
-      - Yazılar önde (beyaz) 
-    */
     .hero {
       position: relative;
       height: 100vh;
@@ -105,7 +98,6 @@
   </header>
 
   <section class="hero">
-    <!-- Etkileşimli particle arka plan için canvas -->
     <canvas id="particleCanvas"></canvas>
     <div class="hero-content">
       <h2>Yapay Zeka Tabanlı Müşteri Hizmetlerinde Öncü</h2>
@@ -169,21 +161,19 @@
     </div>
   </footer>
 
-  <!-- Etkileşimli Particle Script -->
   <script>
     const canvas = document.getElementById('particleCanvas');
     const ctx = canvas.getContext('2d');
 
     let particles = [];
     const config = {
-      particleCount: 60,         // Parçacık sayısı
-      maxDistance: 130,          // Çizgiyle bağlanma mesafesi
-      particleSize: 3,           // Parçacık boyutu
-      particleSpeed: 0.6,        // Parçacık hareket hızı
-      particleColor: '#ffffff',  // Parçacık rengi (beyaz)
+      particleCount: 60,         
+      maxDistance: 130,          
+      particleSize: 3,           
+      particleSpeed: 0.6,        
+      particleColor: '#ffffff',  
     };
 
-    // Ekran boyutunu ayarla
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -191,7 +181,6 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    // Parçacık sınıfı
     class Particle {
       constructor() {
         this.x = Math.random() * canvas.width;
@@ -224,28 +213,23 @@
       }
     }
 
-    // Animasyon döngüsü
     function animate() {
-      // Arka planı her karede temizle
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Parçacıkları güncelle ve çiz
       particles.forEach((p) => {
         p.update();
         p.draw();
       });
 
-      // Parçacıklar arası çizgiler
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx*dx + dy*dy);
           if (dist < config.maxDistance) {
-            // Yakın parçacıkları çizgiyle bağla
-            const alpha = 1 - dist / config.maxDistance; // Mesafe arttıkça şeffaf
+            const alpha = 1 - dist / config.maxDistance; 
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(255,255,255,${alpha})`; // Beyaz, alpha değeri
+            ctx.strokeStyle = `rgba(255,255,255,${alpha})`; 
             ctx.lineWidth = 1;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
