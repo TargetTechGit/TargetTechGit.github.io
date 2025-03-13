@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Target Tech Yazılım - Ana Sayfa</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <!-- Favicon (images/favicon.ico) -->
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+  
+  <link rel="stylesheet" href="css/style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
 
   <style>
     /* 
@@ -56,6 +63,22 @@
       margin-bottom: 2rem;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     }
+
+    /* Logo Metni + Resim */
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0;
+    }
+    .logo img {
+      height: 32px;
+      margin-left: 8px;
+    }
   </style>
 </head>
 <body>
@@ -63,6 +86,10 @@
     <nav>
       <div class="logo">
         <h1>Target Tech</h1>
+        <img
+          src="images/favicon.ico"
+          alt="Company Logo"
+        />
       </div>
       <ul class="nav-links">
         <li><a href="index.html" class="active">Ana Sayfa</a></li>
@@ -112,7 +139,11 @@
     <div class="footer-container">
       <div class="footer-column">
         <h3>Target Tech Yazılım</h3>
-        <p>Call center operasyonlarını yapay zeka ile dönüştüren, potansiyel tespiti ve analitik çözümleriyle müşteri deneyimini bir üst seviyeye taşıyan yenilikçi teknoloji sağlayıcınız.</p>
+        <p>
+          Call center operasyonlarını yapay zeka ile dönüştüren, potansiyel
+          tespiti ve analitik çözümleriyle müşteri deneyimini bir üst seviyeye
+          taşıyan yenilikçi teknoloji sağlayıcınız.
+        </p>
       </div>
       <div class="footer-column">
         <h3>Hızlı Erişim</h3>
@@ -124,7 +155,11 @@
       </div>
       <div class="footer-column">
         <h3>İletişim</h3>
-        <p><i class="fas fa-map-marker-alt"></i> Barış Mah. Koşu Yolu Cad. ARGE VE İNOVASYON Binası No 26 İç Kapı No:48 Gebze/Kocaeli</p>
+        <p>
+          <i class="fas fa-map-marker-alt"></i>
+          Barış Mah. Koşu Yolu Cad. ARGE VE İNOVASYON Binası No 26 İç Kapı
+          No:48 Gebze/Kocaeli
+        </p>
         <p><i class="fas fa-phone"></i> +90 549 820 40 60</p>
         <p><i class="fas fa-envelope"></i> github@targetteknoloji.com</p>
       </div>
