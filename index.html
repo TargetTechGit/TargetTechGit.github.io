@@ -1,3 +1,231 @@
----
-layout: home_style
----
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Target Tech Yazılım - Ana Sayfa</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <style>
+    /* 
+      HERO BÖLÜMÜ: 
+      - Koyu mavi bir gradyan arka plan 
+      - Canvas en arkada 
+      - Yazılar önde (beyaz) 
+    */
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      color: #fff;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      /* Gradyan arka plan (kurumsal mavi tonları) */
+      background: linear-gradient(120deg, #1a237e, #3949ab);
+    }
+
+    #particleCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0; /* Arkada kalması için */
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1; /* Canvas'ın üstünde gözüksün */
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .hero-content h2 {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <h1>Target Tech</h1>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Ana Sayfa</a></li>
+        <li><a href="hakkimizda.html">Hakkımızda</a></li>
+        <li><a href="iletisim.html">İletişim</a></li>
+      </ul>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <!-- Etkileşimli particle arka plan için canvas -->
+    <canvas id="particleCanvas"></canvas>
+    <div class="hero-content">
+      <h2>Yapay Zeka Tabanlı Müşteri Hizmetlerinde Öncü</h2>
+      <p>Target Tech olarak, yapay zeka destekli çözümlerimizle çağrı merkezi sektörüne yenilikçi bir bakış açısı getiriyoruz.</p>
+      <a href="hakkimizda.html" class="btn">Daha Fazla Bilgi</a>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2>Çözümlerimiz</h2>
+    <div class="features-container">
+      <div class="feature-box">
+        <i class="fas fa-robot"></i>
+        <h3>Yapay Zeka Asistanları</h3>
+        <p>Müşteri temsilcilerinizi destekleyen, veri odaklı akıllı asistanlar</p>
+      </div>
+      <div class="feature-box">
+        <i class="fas fa-chart-line"></i>
+        <h3>Gelişmiş Analitik</h3>
+        <p>Müşteri etkileşimlerinde kayıp analizleri ve raporlama otomasyonları</p>
+      </div>
+      <div class="feature-box">
+        <i class="fas fa-check-circle"></i>
+        <h3>Kalite Kontrol</h3>
+        <p>Entegre kalite kontrol sistemi ile hizmet standardınızı koruyun</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>Target Tech Yazılım</h3>
+        <p>Call center operasyonlarını yapay zeka ile dönüştüren, potansiyel tespiti ve analitik çözümleriyle müşteri deneyimini bir üst seviyeye taşıyan yenilikçi teknoloji sağlayıcınız.</p>
+      </div>
+      <div class="footer-column">
+        <h3>Hızlı Erişim</h3>
+        <ul>
+          <li><a href="index.html">Ana Sayfa</a></li>
+          <li><a href="hakkimizda.html">Hakkımızda</a></li>
+          <li><a href="iletisim.html">İletişim</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3>İletişim</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Barış Mah. Koşu Yolu Cad. ARGE VE İNOVASYON Binası No 26 İç Kapı No:48 Gebze/Kocaeli</p>
+        <p><i class="fas fa-phone"></i> +90 549 820 40 60</p>
+        <p><i class="fas fa-envelope"></i> github@targetteknoloji.com</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 Target Tech Yazılım. Tüm Hakları Saklıdır.</p>
+    </div>
+  </footer>
+
+  <!-- Etkileşimli Particle Script -->
+  <script>
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let particles = [];
+    const config = {
+      particleCount: 60,         // Parçacık sayısı
+      maxDistance: 130,          // Çizgiyle bağlanma mesafesi
+      particleSize: 3,           // Parçacık boyutu
+      particleSpeed: 0.6,        // Parçacık hareket hızı
+      particleColor: '#ffffff',  // Parçacık rengi (beyaz)
+    };
+
+    // Ekran boyutunu ayarla
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Parçacık sınıfı
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * config.particleSpeed;
+        this.vy = (Math.random() - 0.5) * config.particleSpeed;
+      }
+      update() {
+        // Kenarlara çarpınca yön değiştir
+        if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+        if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+
+        this.x += this.vx;
+        this.y += this.vy;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, config.particleSize, 0, Math.PI * 2);
+        ctx.fillStyle = config.particleColor;
+        ctx.fill();
+        ctx.closePath();
+      }
+    }
+
+    // Başlat
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < config.particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    // Animasyon döngüsü
+    function animate() {
+      // Arka planı her karede temizle
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Parçacıkları güncelle ve çiz
+      particles.forEach((p) => {
+        p.update();
+        p.draw();
+      });
+
+      // Parçacıklar arası çizgiler
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < config.maxDistance) {
+            // Yakın parçacıkları çizgiyle bağla
+            const alpha = 1 - dist / config.maxDistance; // Mesafe arttıkça şeffaf
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(255,255,255,${alpha})`; // Beyaz, alpha değeri
+            ctx.lineWidth = 1;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+            ctx.closePath();
+          }
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    initParticles();
+    animate();
+  </script>
+  <script src="js/script.js"></script>
+</body>
+</html>
