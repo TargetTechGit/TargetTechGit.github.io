@@ -24,7 +24,7 @@
       align-items: center;
       justify-content: center;
 
-      /* Gradyan arka plan (kurumsal mavi tonları) */
+     
       background: linear-gradient(120deg, #1a237e, #3949ab);
     }
 
@@ -34,12 +34,12 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 0; /* Arkada kalması için */
+      z-index: 0; 
     }
 
     .hero-content {
       position: relative;
-      z-index: 1; /* Canvas'ın üstünde gözüksün */
+      z-index: 1; 
       max-width: 800px;
       margin: 0 auto;
       padding: 0 20px;
@@ -112,17 +112,17 @@
       <div class="feature-box">
         <i class="fas fa-robot"></i>
         <h3>Yapay Zeka Asistanları</h3>
-        <p>Müşteri temsilcilerinizi destekleyen, veri odaklı akıllı asistanlar</p>
+        <p>Yapay zeka tabanlı çalışan müşteri temsilcileri ile iletişim süreçlerine yeni bir soluk getiriyoruz.</p>
       </div>
       <div class="feature-box">
         <i class="fas fa-chart-line"></i>
         <h3>Gelişmiş Analitik</h3>
-        <p>Müşteri etkileşimlerinde kayıp analizleri ve raporlama otomasyonları</p>
+        <p>Müşteri etkileşimlerinde kayıp analizleri ve raporlama otomasyonları ile yarına hazırsınız.</p>
       </div>
       <div class="feature-box">
         <i class="fas fa-check-circle"></i>
         <h3>Kalite Kontrol</h3>
-        <p>Entegre kalite kontrol sistemi ile hizmet standardınızı koruyun</p>
+        <p>Entegre kalite kontrol sistemi ile hizmet standardınızı koruyun.</p>
       </div>
     </div>
   </section>
@@ -189,7 +189,6 @@
         this.vy = (Math.random() - 0.5) * config.particleSpeed;
       }
       update() {
-        // Kenarlara çarpınca yön değiştir
         if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
         if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
 
@@ -205,7 +204,6 @@
       }
     }
 
-    // Başlat
     function initParticles() {
       particles = [];
       for (let i = 0; i < config.particleCount; i++) {
