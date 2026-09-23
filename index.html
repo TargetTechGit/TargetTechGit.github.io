@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Target Tech Yazılım - Ana Sayfa</title>
+  
+  <link rel="icon" href="images/favicon.ico" type="image/x-icon" />
+  
+  <link rel="stylesheet" href="css/style.css?v=2.0" />
+  <link rel="stylesheet" href="css/animations.css?v=2.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+  <link rel="stylesheet" href="css/footer.css?v=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    .hero {
+      position: relative;
+      min-height: 60vh;
+      padding: 80px 0;
+      overflow: hidden;
+      color: #fff;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    }
+
+    #particleCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0; 
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1; 
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 20px;
+      animation: none;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-content h2 {
+      font-size: clamp(3rem, 7.5vw, 4.0rem);
+      margin-bottom: 1.0rem;
+      text-shadow: 2px 6px 26px rgba(0, 0, 0, 0.55);
+      font-weight: 800;
+      background: linear-gradient(135deg, #ffffff, #00d4ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.05;
+      letter-spacing: 0.4px;
+    }
+
+    .hero-content p {
+      font-size: clamp(1.05rem, 2.6vw, 1.25rem);
+      margin-bottom: 2rem;
+      text-shadow: 1px 2px 6px rgba(0, 0, 0, 0.45);
+      font-weight: 400;
+      letter-spacing: 0.3px;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.95);
+    }
+
+    /* Logo Metni + Resim */
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: inherit;
+      margin: 0;
+    }
+    .logo img {
+      height: 32px;
+      margin-left: 8px;
+      filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.3));
+      transition: all 0.4s ease;
+    }
+
+    .logo img:hover {
+      filter: drop-shadow(0 0 16px rgba(0, 212, 255, 0.6));
+      transform: scale(1.1);
+    }
+
+    /* Enhanced Button Styles */
+    .btn {
+      display: inline-block;
+      padding: 12px 32px;
+      background: linear-gradient(135deg, #00d4ff, #0099cc);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: 2px solid transparent;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+      border-color: #00d4ff;
+    }
+
+    .btn:active {
+      transform: translateY(-1px);
+    }
+
+    /* Features Container Enhancement */
+    .features {
+      padding: 80px 6%;
+      max-width: none;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .features h2 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 60px;
+      background: linear-gradient(135deg, #6c63ff, #00d4ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .features-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 36px;
+      max-width: 1400px;
+      margin: 0 auto;
+      justify-items: stretch;
+      align-items: start;
+      padding: 0 12px;
+    }
+
+    /* Force three equal columns on large screens to avoid center-clustering */
+    @media (min-width: 1100px) {
+      .features-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .feature-box {
+      padding: 30px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 212, 255, 0.15);
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 100%;
+      max-width: none;
+      box-sizing: border-box;
+    }
+
+    .feature-box i {
+      font-size: 3rem;
+      color: #00d4ff;
+      margin-bottom: 20px;
+      display: block;
+      transition: all 0.3s ease;
+    }
+
+    .feature-box:hover i {
+      transform: scale(1.15) rotateY(10deg);
+      color: #ff006e;
+    }
+
+    .feature-box h3 {
+      font-size: 1.35rem;
+      margin-bottom: 14px;
+      color: var(--accent);
+      font-weight: 600;
+      font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      letter-spacing: 0.2px;
+    }
+
+    .feature-box p {
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .video-section {
+      padding: 80px 4%;
+      background: linear-gradient(135deg, rgba(108, 99, 255, 0.05) 0%, rgba(0, 212, 255, 0.03) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .video-section::before,
+    .video-section::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(30px);
+      z-index: 0;
+      opacity: 0.7;
+    }
+
+    .video-section::before {
+      top: -60px;
+      right: -60px;
+      width: 220px;
+      height: 220px;
+      background: rgba(0, 212, 255, 0.14);
+    }
+
+    .video-section::after {
+      bottom: -80px;
+      left: -80px;
+      width: 260px;
+      height: 260px;
+      background: rgba(108, 99, 255, 0.12);
+    }
+
+    .video-poster-link {
+      position: relative;
+      display: block;
+      max-width: 920px;
+      margin: 0 auto;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 28px 80px rgba(0, 212, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      aspect-ratio: 16 / 9;
+      z-index: 1;
+      text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .video-poster-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 32px 90px rgba(0, 212, 255, 0.22);
+    }
+
+    .video-poster-link::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(9, 14, 22, 0.18), rgba(9, 14, 22, 0.6)),
+        url('https://img.youtube.com/vi/GGMI24vLCjU/maxresdefault.jpg') center center / cover no-repeat;
+      z-index: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .video-poster-link::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.4) 100%);
+      z-index: 1;
+    }
+
+    .video-poster-link iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      z-index: 2;
+      background: #000;
+    }
+
+    .video-poster-link.is-loaded::before {
+      opacity: 0.2;
+    }
+
+    .video-poster-link.is-loaded iframe {
+      opacity: 1;
+    }
+
+    .video-poster-button {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255, 0, 0, 0.95), rgba(200, 0, 0, 0.9));
+      box-shadow: 0 0 30px rgba(255, 0, 0, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 4px solid rgba(255, 255, 255, 0.38);
+      z-index: 3;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.25s ease;
+      pointer-events: none;
+    }
+
+    .video-poster-button i {
+      color: white;
+      font-size: 1.9rem;
+      margin-left: 6px;
+    }
+
+    .video-poster-link:hover .video-poster-button {
+      transform: translate(-50%, -50%) scale(1.06);
+      box-shadow: 0 0 40px rgba(255, 0, 0, 0.6);
+    }
+
+    .video-poster-link.is-loaded .video-poster-button {
+      opacity: 0;
+    }
+
+    .video-note {
+      text-align: center;
+      margin-top: 18px;
+      color: #8e9bb3;
+      font-size: 0.92rem;
+    }
+
+    /* Light Mode Overrides */
+    body.light-mode .hero {
+      background: linear-gradient(135deg, #f0f2f5 0%, #e8eaef 50%, #e0e3e8 100%) !important;
+    }
+
+    body.light-mode .hero-content h2 {
+      background: linear-gradient(135deg, #1a1a2e, #0099cc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    body.light-mode .hero-content p {
+      color: #1a1a2e !important;
+      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5) !important;
+    }
+
+    body.light-mode .features h2 {
+      background: linear-gradient(135deg, #6c63ff, #0099cc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    body.light-mode .feature-box {
+      background: rgba(0, 0, 0, 0.03);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    body.light-mode .feature-box h3 {
+      color: #1a1a2e !important;
+    }
+
+    body.light-mode .feature-box p {
+      color: #333333 !important;
+    }
+
+    body.light-mode .feature-box i {
+      color: #0099cc;
+    }
+
+    body.light-mode .feature-box:hover i {
+      color: #ff006e;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <h1>Target Tech</h1>
+        <img
+          src="images/favicon.ico"
+          alt="Company Logo"
+        />
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a></li>
+        <li><a href="hakkimizda.html" data-tr="Hakkımızda" data-en="About">Hakkımızda</a></li>
+        <li><a href="iletisim.html" data-tr="İletişim" data-en="Contact">İletişim</a></li>
+      </ul>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+      <div class="header-controls">
+        <div class="toggle-group theme-toggle-group">
+          <button class="toggle-btn theme-light" id="themeLightBtn" title="Light Mode">
+            <i class="fas fa-sun"></i>
+          </button>
+          <button class="toggle-btn theme-dark active" id="themeDarkBtn" title="Dark Mode">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+        <div class="toggle-group lang-toggle-group">
+          <button class="toggle-btn lang-tr active" id="langTrBtn" title="Türkçe">
+            TR
+          </button>
+          <button class="toggle-btn lang-en" id="langEnBtn" title="English">
+            EN
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <canvas id="particleCanvas"></canvas>
+    <div class="hero-content">
+      <h2 data-tr="Yapay Zeka Tabanlı Müşteri Hizmetlerinde Öncü" data-en="AI-Powered Customer Service Leader">Yapay Zeka Tabanlı Müşteri Hizmetlerinde Öncü</h2>
+      <p data-tr="Target Tech olarak, yapay zeka destekli çözümlerimizle çağrı merkezi sektörüne yenilikçi bir bakış açısı getiriyoruz." data-en="As Target Tech, we bring innovative solutions to the call center industry with our AI-powered solutions.">Target Tech olarak, yapay zeka destekli çözümlerimizle çağrı merkezi sektörüne yenilikçi bir bakış açısı getiriyoruz.</p>
+      <a href="hakkimizda.html" class="btn" data-tr="Daha Fazla Bilgi" data-en="Learn More">Daha Fazla Bilgi</a>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 data-tr="Çözümlerimiz" data-en="Our Solutions">Çözümlerimiz</h2>
+    <div class="features-container">
+      <div class="feature-box">
+        <i class="fas fa-robot"></i>
+        <h3 data-tr="Yapay Zeka Asistanları" data-en="AI Assistants">Yapay Zeka Asistanları</h3>
+        <p data-tr="Yapay zeka tabanlı çalışan müşteri temsilcileri ile iletişim süreçlerine yeni bir soluk getiriyoruz." data-en="AI-powered customer representatives bring innovation to communication processes.">Yapay zeka tabanlı çalışan müşteri temsilcileri ile iletişim süreçlerine yeni bir soluk getiriyoruz.</p>
+      </div>
+      <div class="feature-box">
+        <i class="fas fa-chart-line"></i>
+        <h3 data-tr="Gelişmiş Analitik" data-en="Advanced Analytics">Gelişmiş Analitik</h3>
+        <p data-tr="Müşteri etkileşimlerinde kayıp analizleri ve raporlama otomasyonları ile yarına hazırsınız." data-en="Prepare for tomorrow with loss analysis and automated reporting.">Müşteri etkileşimlerinde kayıp analizleri ve raporlama otomasyonları ile yarına hazırsınız.</p>
+      </div>
+      <div class="feature-box">
+        <i class="fas fa-check-circle"></i>
+        <h3 data-tr="Kalite Kontrol" data-en="Quality Control">Kalite Kontrol</h3>
+        <p data-tr="Entegre kalite kontrol sistemi ile hizmet standardınızı koruyun." data-en="Maintain service standards with integrated quality control.">Entegre kalite kontrol sistemi ile hizmet standardınızı koruyun.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Presentation Section -->
+  <section class="video-section" style="padding: 80px 4%; background: linear-gradient(135deg, rgba(108, 99, 255, 0.05) 0%, rgba(0, 212, 255, 0.03) 100%); position: relative; overflow: hidden;">
+    <div style="position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: rgba(0, 212, 255, 0.1); border-radius: 50%; z-index: 0;"></div>
+    <div style="position: absolute; bottom: -60px; left: -60px; width: 250px; height: 250px; background: rgba(108, 99, 255, 0.1); border-radius: 50%; z-index: 0;"></div>
+    <div style="max-width: 1200px; margin: 0 auto; position: relative; z-index: 1;">
+      <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 20px; background: linear-gradient(135deg, #6c63ff, #00d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" data-tr="Şirket Tanıtımı" data-en="Company Introduction">Şirket Tanıtımı</h2>
+      <p style="font-size: 1.1rem; text-align: center; color: #666; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;" data-tr="Target Tech'in vizyonunu ve misyonunu öğrenin" data-en="Learn about Target Tech's vision and mission">Target Tech'in vizyonunu ve misyonunu öğrenin</p>
+      <div
+        class="video-poster-link"
+        data-video-src="https://www.youtube.com/embed/GGMI24vLCjU?autoplay=1&mute=1&loop=1&playlist=GGMI24vLCjU&controls=1&rel=0&playsinline=1"
+        aria-label="Target Tech tanıtım videosu"
+        role="img"
+      >
+        <iframe
+          title="Target Tech şirket tanıtım videosu"
+          allow="autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          referrerpolicy="strict-origin-when-cross-origin"
+        ></iframe>
+        <div class="video-poster-button" aria-hidden="true">
+          <i class="fas fa-play"></i>
+        </div>
+      </div>
+      <div class="video-note">
+        <p data-tr="Kurumsal tanıtım videosu" data-en="Corporate introduction video">Kurumsal tanıtım videosu</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-column">
+        <div class="logo">
+          <h1 data-tr="Target Tech" data-en="Target Tech">Target Tech</h1>
+          <img src="images/favicon.ico" alt="Target Tech">
+        </div>
+        <p data-tr="Call center operasyonlarını yapay zeka ile dönüştüren, potansiyel tespiti ve analitik çözümleriyle müşteri deneyimini bir üst seviyeye taşıyan yenilikçi teknoloji sağlayıcınız." data-en="Innovative technology provider transforming call center operations with AI, elevating customer experience through intelligence and analytics.">Call center operasyonlarını yapay zeka ile dönüştüren, potansiyel tespiti ve analitik çözümleriyle müşteri deneyimini bir üst seviyeye taşıyan yenilikçi teknoloji sağlayıcınız.</p>
+        <div class="social-icons">
+          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+      </div>
+      <div class="footer-column">
+        <h3 data-tr="Hızlı Erişim" data-en="Quick Links">Hızlı Erişim</h3>
+        <ul>
+          <li><a href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a></li>
+          <li><a href="hakkimizda.html" data-tr="Hakkımızda" data-en="About">Hakkımızda</a></li>
+          <li><a href="iletisim.html" data-tr="İletişim" data-en="Contact">İletişim</a></li>
+        </ul>
+      </div>
+      <div class="footer-column">
+        <h3 data-tr="İletişim" data-en="Contact">İletişim</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Barış Mah. Koşu Yolu Cad. ARGE VE İNOVASYON Binası No 26 İç Kapı No:48 Gebze/Kocaeli</p>
+        <p><i class="fas fa-phone"></i> +90 549 820 40 60</p>
+        <p><i class="fas fa-envelope"></i> github@targetteknoloji.com</p>
+      </div>
+      <div class="footer-column">
+        <h3 data-tr="Bültene Katıl" data-en="Join Newsletter">Bültene Katıl</h3>
+        <p data-tr="En son haberler ve güncellemeler için abone olun." data-en="Subscribe for latest news and updates.">En son haberler ve güncellemeler için abone olun.</p>
+        <form class="newsletter" onsubmit="event.preventDefault(); alert('Teşekkürler! Aboneliğiniz alındı.');">
+          <input type="email" placeholder="E-posta adresiniz" required />
+          <button type="submit" data-tr="Abone Ol" data-en="Subscribe">Abone Ol</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p data-tr="&copy; 2025 Target Tech Yazılım. Tüm Hakları Saklıdır." data-en="&copy; 2025 Target Tech Software. All Rights Reserved.">&copy; 2025 Target Tech Yazılım. Tüm Hakları Saklıdır.</p>
+    </div>
+  </footer>
+
+    <!-- partner logos -->
+    <div style="max-width:1200px;margin:14px auto 36px;display:flex;gap:18px;justify-content:center;align-items:center;">
+      <img src="images/partners/partner1.svg" alt="Partner 1" style="height:40px;opacity:0.95;" />
+      <img src="images/partners/partner2.svg" alt="Partner 2" style="height:40px;opacity:0.95;" />
+    </div>
+
+  <script>
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let particles = [];
+    const config = {
+      particleCount: 60,
+      maxDistance: 130,
+      particleSize: 3,
+      particleSpeed: 0.6,
+      particleColor: '#ffffff',
+      lineBaseColor: '255,255,255'
+    };
+
+    // Adjust particle colors/opacity for light mode for better contrast
+    function applyParticleTheme() {
+      const isLight = document.body.classList.contains('light-mode') || !document.body.classList.contains('dark-mode');
+      if (isLight) {
+        config.particleColor = 'rgba(20,40,50,0.65)';
+        config.lineBaseColor = '34,51,58';
+        config.particleSize = 3; // keep similar size
+        config.particleCount = 60;
+      } else {
+        config.particleColor = '#ffffff';
+        config.lineBaseColor = '255,255,255';
+        config.particleSize = 3;
+        config.particleCount = 60;
+      }
+    }
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * config.particleSpeed;
+        this.vy = (Math.random() - 0.5) * config.particleSpeed;
+      }
+      update() {
+        if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+        if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+
+        this.x += this.vx;
+        this.y += this.vy;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, config.particleSize, 0, Math.PI * 2);
+        ctx.fillStyle = config.particleColor;
+        ctx.fill();
+        ctx.closePath();
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < config.particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      particles.forEach((p) => {
+        p.update();
+        p.draw();
+      });
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < config.maxDistance) {
+            const alpha = 1 - dist / config.maxDistance;
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(${config.lineBaseColor},${Math.min(alpha * 0.9, 0.95)})`;
+            ctx.lineWidth = 1;
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+            ctx.closePath();
+          }
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    // Apply initial theme and (re)initialize particles
+    applyParticleTheme();
+    initParticles();
+    animate();
+
+    // Observe body class changes to reapply particle theme dynamically
+    const bodyObserver = new MutationObserver(() => {
+      const prevCount = particles.length;
+      applyParticleTheme();
+      if (config.particleCount !== prevCount) {
+        initParticles();
+      }
+    });
+    bodyObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="js/script.js?v=2.0"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+  </script>
+</body>
+</html>

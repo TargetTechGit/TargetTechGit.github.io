@@ -1,0 +1,345 @@
+/* AOS Custom Animations */
+.feature-box[data-aos] {
+    opacity: 0;
+}
+
+.feature-box[data-aos="fade-up"] {
+    animation: slideInUp 0.6s ease-out forwards;
+}
+
+.team-member[data-aos="fade-up"] {
+    animation: slideInUp 0.6s ease-out forwards;
+}
+
+.value-item[data-aos="fade-up"] {
+    animation: slideInUp 0.6s ease-out forwards;
+}
+
+.timeline-item[data-aos="fade-left"] {
+    animation: slideInLeft 0.6s ease-out forwards;
+}
+
+.timeline-item[data-aos="fade-right"] {
+    animation: slideInRight 0.6s ease-out forwards;
+}
+
+/* Skeleton Loading Animation */
+@keyframes skeleton-loading {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.skeleton {
+    background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 75%);
+    background-size: 1000px 100%;
+    animation: skeleton-loading 2s infinite;
+    border-radius: 8px;
+    height: 20px;
+    margin: 10px 0;
+}
+
+.skeleton-box {
+    background: rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.skeleton-title {
+    height: 24px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+}
+
+.skeleton-text {
+    height: 16px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    width: 90%;
+}
+
+.skeleton-text:last-child {
+    width: 70%;
+}
+
+/* ========== Custom Cursor System ========== */
+/* Tüm interaktif elemanlar - default cursor, değişim yok */
+a, button, [role="button"] {
+    cursor: auto;
+}
+
+.feature-box, .team-member, .value-item, .card {
+    cursor: auto;
+}
+
+.feature-box:hover, .team-member:hover, .value-item:hover {
+    cursor: auto;
+}
+
+/* Custom Cursor Container - masaüstü için */
+@media (min-width: 769px) {
+    .custom-cursor {
+        position: fixed;
+        width: 30px;
+        height: 30px;
+        pointer-events: none;
+        z-index: 10000;
+        left: 0;
+        top: 0;
+        transform: translate(-50%, -50%);
+        will-change: transform;
+    }
+
+    /* Call Center Theme - Headset Inspired Ring */
+    .custom-cursor::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 3px solid rgba(0, 212, 255, 0.8);
+        border-radius: 50%;
+        left: 0;
+        top: 0;
+        box-sizing: border-box;
+        box-shadow: 0 0 12px rgba(0, 212, 255, 0.5), inset 0 0 8px rgba(0, 212, 255, 0.2);
+    }
+
+    /* Call Center Signal Dot - Pulsing */
+    .custom-cursor::after {
+        content: '';
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        background: radial-gradient(circle, #00d4ff, #0099cc);
+        border-radius: 50%;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 12px rgba(0, 212, 255, 0.9), 0 0 25px rgba(0, 212, 255, 0.4);
+    }
+
+    /* Hover State - Call Center Active Signal */
+    .custom-cursor.hovering::before {
+        animation: call-center-pulse 0.5s ease-out forwards;
+    }
+
+    .custom-cursor.hovering::after {
+        animation: call-center-glow 0.5s ease-out forwards;
+    }
+
+    /* Call Center Pulse Animation - Headset activity */
+    @keyframes call-center-pulse {
+        0% {
+            width: 100%;
+            height: 100%;
+            border-width: 3px;
+            border-color: rgba(0, 212, 255, 0.8);
+            opacity: 1;
+        }
+        100% {
+            width: 180%;
+            height: 180%;
+            border-width: 1px;
+            border-color: rgba(0, 212, 255, 0.2);
+            opacity: 0;
+        }
+    }
+
+    /* Call Center Glow - Signal strength indicator */
+    @keyframes call-center-glow {
+        0% {
+            box-shadow: 0 0 12px rgba(0, 212, 255, 0.9), 0 0 25px rgba(0, 212, 255, 0.4);
+            transform: translate(-50%, -50%) scale(1);
+        }
+        50% {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 1), 0 0 40px rgba(0, 212, 255, 0.6);
+            transform: translate(-50%, -50%) scale(1.3);
+        }
+        100% {
+            box-shadow: 0 0 28px rgba(0, 212, 255, 0.7), 0 0 50px rgba(0, 212, 255, 0.3);
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+    }
+
+    /* Smooth transition for position */
+    .custom-cursor.smooth {
+        transition: none;
+    }
+}
+
+/* Loading Bar Animation */
+@keyframes loadingBar {
+    0% {
+        width: 0;
+    }
+    50% {
+        width: 70%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+
+.loading-bar {
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), #00a8e8);
+    animation: loadingBar 2.5s ease-in-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
+
+/* Pulse Animation */
+@keyframes pulse-glow {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(0, 212, 255, 0);
+    }
+}
+
+.pulse {
+    animation: pulse-glow 2s infinite;
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Video Section Enhanced Animations */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Video container hover effect */
+.video-container {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.video-container:hover {
+    box-shadow: 0 30px 80px rgba(0, 212, 255, 0.3);
+    transform: translateY(-5px);
+}
+
+/* Reveal animation for elements */
+.reveal {
+    animation: slideInUp 0.8s ease-out forwards;
+}
+
+/* Feature box enhanced hover */
+.feature-box {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.2), transparent);
+    transition: left 0.8s ease-in-out;
+    z-index: 1;
+}
+
+.feature-box:hover::before {
+    left: 100%;
+}
+
+.feature-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.25);
+}
+
+/* Button hover animation */
+.btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* Stagger animation for list items */
+.feature-box:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.feature-box:nth-child(3) {
+    animation-delay: 0.4s;
+}

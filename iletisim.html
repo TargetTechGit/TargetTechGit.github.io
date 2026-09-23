@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Target Tech Yazılım - İletişim</title>
+    <link rel="stylesheet" href="css/style.css?v=2.0">
+    <link rel="stylesheet" href="css/animations.css?v=2.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/footer.css?v=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: inherit;
+            margin: 0;
+        }
+        .logo img {
+            height: 32px;
+            margin-left: 8px;
+            filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.3));
+        }
+
+        .page-header {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #particleCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-hero-title {
+            font-size: clamp(3rem, 9.5vw, 4.2rem);
+            font-weight: 800;
+            margin-bottom: 1.6rem;
+            color: #ffffff;
+            letter-spacing: -0.6px;
+            line-height: 1.08;
+            text-shadow: 0 6px 20px rgba(10,20,30,0.45);
+            transition: all 0.25s ease;
+            font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        }
+        .contact-hero-subtitle {
+            font-size: clamp(1.15rem, 2.6vw, 1.35rem);
+            font-weight: 400;
+            letter-spacing: 0.2px;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 900px;
+            margin: 0 auto;
+            opacity: 0.98;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        }
+        body.light-mode .page-header.hero-animated {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
+        }
+        body.light-mode #particleCanvas {
+            opacity: 0.6;
+        }
+        body.light-mode .contact-hero-title {
+            color: #1a1a2e !important;
+        }
+        body.light-mode .hero-inner .contact-hero-title {
+            color: #1a1a2e !important;
+        }
+        body.light-mode .page-header .contact-hero-title {
+            color: #1a1a2e !important;
+        }
+        body.light-mode .contact-hero-subtitle {
+            color: #1a1a2e !important;
+        }
+        body.light-mode .hero-inner .contact-hero-subtitle {
+            color: #1a1a2e !important;
+        }
+        body.light-mode .page-header .contact-hero-subtitle {
+            color: #1a1a2e !important;
+        }
+        body.light-mode .page-header.hero-animated {
+            background: linear-gradient(135deg, #f0f2f5 0%, #e8eaef 100%) !important;
+        }
+        body.light-mode .contact-content p {
+            color: #1a1a2e !important;
+        }
+        body.light-mode .contact-content h2 {
+            color: var(--accent) !important;
+        }
+        body.light-mode .contact-content h3 {
+            color: #1a1a2e !important;
+        }
+        body.light-mode .form-group label {
+            color: #1a1a2e !important;
+        }
+        body.light-mode .form-group input,
+        body.light-mode .form-group textarea {
+            color: #1a1a2e !important;
+            background-color: #ffffff !important;
+            border-color: #cccccc !important;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Target Tech</h1>
+                <img src="images/favicon.ico" alt="Company Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a></li>
+                <li><a href="hakkimizda.html" data-tr="Hakkımızda" data-en="About">Hakkımızda</a></li>
+                <li><a href="iletisim.html" class="active" data-tr="İletişim" data-en="Contact">İletişim</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+            <div class="header-controls">
+                <div class="toggle-group theme-toggle-group">
+                    <button class="toggle-btn theme-light" id="themeLightBtn" title="Light Mode">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <button class="toggle-btn theme-dark active" id="themeDarkBtn" title="Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                <div class="toggle-group lang-toggle-group">
+                    <button class="toggle-btn lang-tr active" id="langTrBtn" title="Türkçe">
+                        TR
+                    </button>
+                    <button class="toggle-btn lang-en" id="langEnBtn" title="English">
+                        EN
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="page-header hero-animated">
+        <canvas id="particleCanvas"></canvas>
+        <div class="hero-inner" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 100px 20px;">
+            <div style="max-width: 950px;">
+                <h1 class="contact-hero-title" data-tr="İletişim" data-en="Contact">İletişim</h1>
+                <p class="contact-hero-subtitle" data-tr="Projelerinizi tanıtın, hedeflerinizi anlayalım. Uzman ekibimiz en uygun çözümü bulmanızda yardımcı olmaya hazır. Hemen iletişime geçin." data-en="Tell us about your project and goals. Our expert team is ready to help you find the perfect solution. Get in touch today.">Projelerinizi tanıtın, hedeflerinizi anlayalım. Uzman ekibimiz en uygun çözümü bulmanızda yardımcı olmaya hazır. Hemen iletişime geçin.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-content" style="padding:60px 4%; max-width:1300px; margin:0 auto;">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; margin-bottom:60px; align-items:start;">
+            <div class="contact-info" style="animation:slideInLeft 0.6s ease-out;">
+                <h2 style="font-size:2rem; margin-bottom:32px; background:linear-gradient(90deg, #6c63ff, var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;" data-tr="İletişim Bilgilerimiz" data-en="Our Contact Information">İletişim Bilgilerimiz</h2>
+                <div style="display:flex; flex-direction:column; gap:24px;">
+                    <div class="info-item" style="padding:20px; border-radius:8px; background:rgba(0,212,255,0.06); border-left:3px solid var(--accent); transition:all 0.3s;">
+                        <i class="fas fa-building" style="font-size:1.6rem; color:var(--accent); margin-bottom:12px; display:block;"></i>
+                        <h3 style="font-size:1.1rem; margin:8px 0; color:#1a1a2e;" data-tr="Şirket Adı" data-en="Company Name">Şirket Adı</h3>
+                        <p style="color:#666;" data-tr="Target Tech Yazılım Sanayi Ve Ticaret Limited Şirketi" data-en="Target Tech Software Industry and Trade Limited Company">Target Tech Yazılım Sanayi Ve Ticaret Limited Şirketi</p>
+                    </div>
+                    <div class="info-item" style="padding:20px; border-radius:8px; background:rgba(0,212,255,0.06); border-left:3px solid var(--accent); transition:all 0.3s;">
+                        <i class="fas fa-map-marker-alt" style="font-size:1.6rem; color:var(--accent); margin-bottom:12px; display:block;"></i>
+                        <h3 style="font-size:1.1rem; margin:8px 0; color:#1a1a2e;" data-tr="Adres" data-en="Address">Adres</h3>
+                        <p style="color:#666;" data-tr="Barış Mah. Koşu Yolu Cad. ARGE VE İNOVASYON Binası No 26 İç Kapı No:48 Gebze/Kocaeli" data-en="Barış Mah. Koşu Yolu Cad. R&D AND INNOVATION Building No 26 Interior Door No:48 Gebze/Kocaeli">Barış Mah. Koşu Yolu Cad. ARGE VE İNOVASYON Binası No 26 İç Kapı No:48 Gebze/Kocaeli</p>
+                    </div>
+                    <div class="info-item" style="padding:20px; border-radius:8px; background:rgba(0,212,255,0.06); border-left:3px solid var(--accent); transition:all 0.3s;">
+                        <i class="fas fa-phone" style="font-size:1.6rem; color:var(--accent); margin-bottom:12px; display:block;"></i>
+                        <h3 style="font-size:1.1rem; margin:8px 0; color:#1a1a2e;" data-tr="Telefon" data-en="Phone">Telefon</h3>
+                        <p style="color:#666;"><a href="tel:+905498204060" style="color:#00d4ff; text-decoration:none;">+90 549 820 40 60</a></p>
+                    </div>
+                    <div class="info-item" style="padding:20px; border-radius:8px; background:rgba(0,212,255,0.06); border-left:3px solid var(--accent); transition:all 0.3s;">
+                        <i class="fas fa-envelope" style="font-size:1.6rem; color:var(--accent); margin-bottom:12px; display:block;"></i>
+                        <h3 style="font-size:1.1rem; margin:8px 0; color:#1a1a2e;" data-tr="E-posta" data-en="Email">E-posta</h3>
+                        <p style="color:#666;"><a href="mailto:github@targetteknoloji.com" style="color:#00d4ff; text-decoration:none;">github@targetteknoloji.com</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form" style="animation:slideInRight 0.6s ease-out;">
+                <h2 style="font-size:2rem; margin-bottom:32px; background:linear-gradient(90deg, var(--accent), #ff006e); -webkit-background-clip:text; -webkit-text-fill-color:transparent;" data-tr="Bize Ulaşın" data-en="Contact Us">Bize Ulaşın</h2>
+                <form id="contactForm" style="display:flex; flex-direction:column; gap:16px;">
+                    <div class="form-group" style="display:flex; flex-direction:column; gap:6px;">
+                        <label for="name" style="font-weight:500; color:#1a1a2e;" data-tr="Ad Soyad" data-en="Full Name">Ad Soyad</label>
+                        <input type="text" id="name" name="name" required placeholder="Adınız ve Soyadınız" style="padding:12px; border:1px solid rgba(0,212,255,0.2); border-radius:6px; background:#fff; font-size:0.95rem;">
+                        <div class="form-error" style="color:#ff006e; font-size:0.85rem;"></div>
+                    </div>
+                    <div class="form-group" style="display:flex; flex-direction:column; gap:6px;">
+                        <label for="email" style="font-weight:500; color:#1a1a2e;" data-tr="E-posta" data-en="Email">E-posta</label>
+                        <input type="email" id="email" name="email" required placeholder="ornek@email.com" style="padding:12px; border:1px solid rgba(0,212,255,0.2); border-radius:6px; background:#fff; font-size:0.95rem;">
+                        <div class="form-error" style="color:#ff006e; font-size:0.85rem;"></div>
+                    </div>
+                    <div class="form-group" style="display:flex; flex-direction:column; gap:6px;">
+                        <label for="phone" style="font-weight:500; color:#1a1a2e;" data-tr="Telefon" data-en="Phone">Telefon</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+90 5XX XXX XX XX" style="padding:12px; border:1px solid rgba(0,212,255,0.2); border-radius:6px; background:#fff; font-size:0.95rem;">
+                        <div class="form-error" style="color:#ff006e; font-size:0.85rem;"></div>
+                    </div>
+                    <div class="form-group" style="display:flex; flex-direction:column; gap:6px;">
+                        <label for="message" style="font-weight:500; color:#1a1a2e;" data-tr="Mesajınız" data-en="Your Message">Mesajınız</label>
+                        <textarea id="message" name="message" rows="5" required placeholder="Mesajınızı buraya yazın..." style="padding:12px; border:1px solid rgba(0,212,255,0.2); border-radius:6px; background:#fff; font-size:0.95rem; resize:vertical;"></textarea>
+                        <div class="form-error" style="color:#ff006e; font-size:0.85rem;"></div>
+                    </div>
+                    <button type="submit" class="btn" style="margin-top:8px;" data-tr="Gönder" data-en="Send">Gönder</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="map-section" style="padding:40px 4%; background:rgba(0,212,255,0.03);">
+        <h2 style="font-size:2rem; text-align:center; margin-bottom:40px; background:linear-gradient(90deg, #6c63ff, var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;" data-tr="Konumumuz" data-en="Our Location">Konumumuz</h2>
+        <div class="map-container" style="max-width: 1200px; margin: 0 auto; border-radius: 12px; overflow: hidden; box-shadow:0 8px 24px rgba(0,0,0,0.1);">
+            <iframe
+                width="100%"
+                height="450"
+                style="border:0;"
+                loading="lazy"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=40.791026,29.462557&z=15&output=embed">
+            </iframe>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <div class="logo">
+                    <h1 data-tr="Target Tech" data-en="Target Tech">Target Tech</h1>
+                    <img src="images/favicon.ico" alt="Target Tech">
+                </div>
+                <p data-tr="Call center operasyonlarını yapay zeka ile dönüştüren, potansiyel tespiti ve analitik çözümleriyle müşteri deneyimini bir üst seviyeye taşıyan yenilikçi teknoloji sağlayıcınız." data-en="Innovative technology provider transforming call center operations with AI, elevating customer experience through intelligence and analytics.">Call center operasyonlarını yapay zeka ile dönüştüren, potansiyel tespiti ve analitik çözümleriyle müşteri deneyimini bir üst seviyeye taşıyan yenilikçi teknoloji sağlayıcınız.</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3 data-tr="Hızlı Erişim" data-en="Quick Links">Hızlı Erişim</h3>
+                <ul>
+                    <li><a href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a></li>
+                    <li><a href="hakkimizda.html" data-tr="Hakkımızda" data-en="About">Hakkımızda</a></li>
+                    <li><a href="iletisim.html" data-tr="İletişim" data-en="Contact">İletişim</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 data-tr="İletişim" data-en="Contact">İletişim</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Barış Mah. Koşu Yolu Cad. ARGE VE İNOVASYON Binası No 26 İç Kapı No:48 Gebze/Kocaeli</p>
+                <p><i class="fas fa-phone"></i> +90 549 820 40 60</p>
+                <p><i class="fas fa-envelope"></i> github@targetteknoloji.com</p>
+            </div>
+            <div class="footer-column">
+                <h3 data-tr="Bültene Katıl" data-en="Join Newsletter">Bültene Katıl</h3>
+                <p data-tr="En son haberler ve güncellemeler için abone olun." data-en="Subscribe for latest news and updates.">En son haberler ve güncellemeler için abone olun.</p>
+                <form class="newsletter" onsubmit="event.preventDefault(); alert('Teşekkürler! Aboneliğiniz alındı.');">
+                    <input type="email" placeholder="E-posta adresiniz" required />
+                    <button type="submit" data-tr="Abone Ol" data-en="Subscribe">Abone Ol</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-tr="&copy; 2025 Target Tech Yazılım. Tüm Hakları Saklıdır." data-en="&copy; 2025 Target Tech Software. All Rights Reserved.">&copy; 2025 Target Tech Yazılım. Tüm Hakları Saklıdır.</p>
+        </div>
+    </footer>
+
+    <div style="max-width:1200px;margin:14px auto 36px;display:flex;gap:18px;justify-content:center;align-items:center;">
+        <img src="images/partners/partner1.svg" alt="Partner 1" style="height:40px;opacity:0.95;" />
+        <img src="images/partners/partner2.svg" alt="Partner 2" style="height:40px;opacity:0.95;" />
+    </div>
+
+    <script>
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        const config = {
+            particleCount: 70,         
+            maxDistance: 140,          
+            particleSize: 3.5,         
+            particleSpeed: 0.7,        
+            particleColor: '#00d4ff',  
+        };
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * config.particleSpeed;
+                this.vy = (Math.random() - 0.5) * config.particleSpeed;
+            }
+            update() {
+                if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+                if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+
+                this.x += this.vx;
+                this.y += this.vy;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, config.particleSize, 0, Math.PI * 2);
+                ctx.fillStyle = config.particleColor;
+                ctx.fill();
+                ctx.closePath();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < config.particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach((p) => {
+                p.update();
+                p.draw();
+            });
+
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < config.maxDistance) {
+                        const alpha = 1 - dist / config.maxDistance; 
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(0, 212, 255, ${alpha})`; 
+                        ctx.lineWidth = 1.2;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                        ctx.closePath();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        initParticles();
+        animate();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="js/script.js?v=2.0"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <title>Target Tech Yazılım - Hakkımızda</title>
+    <link rel="stylesheet" href="css/style.css?v=2.0">
+    <link rel="stylesheet" href="css/animations.css?v=2.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/footer.css?v=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: inherit;
+            margin: 0;
+        }
+        .logo img {
+            height: 32px;
+            margin-left: 8px;
+            filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.3));
+        }
+        
+        .page-header {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #particleCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .about-content h2 {
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .about-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #00d4ff, #ff006e);
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            animation: slideInLeft 0.6s ease-out backwards;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            animation: slideInRight 0.6s ease-out backwards;
+        }
+        
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Target Tech</h1>
+                <img src="images/favicon.ico" alt="Company Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a></li>
+                <li><a href="hakkimizda.html" class="active" data-tr="Hakkımızda" data-en="About">Hakkımızda</a></li>
+                <li><a href="iletisim.html" data-tr="İletişim" data-en="Contact">İletişim</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+            <div class="header-controls">
+                <div class="toggle-group theme-toggle-group">
+                    <button class="toggle-btn theme-light" id="themeLightBtn" title="Light Mode">
+                        <i class="fas fa-sun"></i>
+                    </button>
+                    <button class="toggle-btn theme-dark active" id="themeDarkBtn" title="Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+                <div class="toggle-group lang-toggle-group">
+                    <button class="toggle-btn lang-tr active" id="langTrBtn" title="Türkçe">
+                        TR
+                    </button>
+                    <button class="toggle-btn lang-en" id="langEnBtn" title="English">
+                        EN
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <style>
+        .about-hero-title {
+            font-size: clamp(3rem, 9.5vw, 4.4rem);
+            font-weight: 800;
+            margin-bottom: 1.6rem;
+            color: #ffffff;
+            letter-spacing: -0.6px;
+            line-height: 1.08;
+            text-shadow: 0 6px 20px rgba(10,20,30,0.45);
+            transition: all 0.25s ease;
+            font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        }
+        .about-hero-subtitle {
+            font-size: clamp(1.15rem, 2.6vw, 1.4rem);
+            font-weight: 400;
+            letter-spacing: 0.2px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 900px;
+            margin: 0 auto;
+            opacity: 0.98;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        }
+        body.light-mode .page-header.hero-animated {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
+        }
+        body.light-mode #particleCanvas {
+            opacity: 0.6;
+        }
+        body.light-mode .about-hero-title {
+            color: #1a1a2e !important;
+        }
+        body.light-mode .hero-inner .about-hero-title {
+            color: #1a1a2e !important;
+        }
+        body.light-mode .page-header .about-hero-title {
+            color: #1a1a2e !important;
+        }
+        body.light-mode .about-hero-subtitle {
+            color: #1a1a2e !important;
+        }
+        body.light-mode .hero-inner .about-hero-subtitle {
+            color: #1a1a2e !important;
+        }
+        body.light-mode .page-header .about-hero-subtitle {
+            color: #1a1a2e !important;
+        }
+        body.light-mode .page-header.hero-animated {
+            background: linear-gradient(135deg, #f0f2f5 0%, #e8eaef 100%) !important;
+        }
+        body.light-mode .about-content p {
+            color: #1a1a2e !important;
+        }
+        /* Improved typography for about page content */
+        .about-content p {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: rgba(10,34,48,0.92);
+            max-width: 980px;
+            margin: 0.6rem auto;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+        }
+        body.light-mode .about-content h2 {
+            color: var(--accent) !important;
+        }
+        body.light-mode .about-content h3 {
+            color: #1a1a2e !important;
+        }
+        body.light-mode .timeline-body h3 {
+            color: #1a1a2e !important;
+        }
+        body.light-mode .timeline-body p {
+            color: #1a1a2e !important;
+        }
+        body.light-mode .timeline-year {
+            color: #1a1a2e !important;
+        }
+        body.light-mode .section-title {
+            color: #1a1a2e !important;
+        }
+    </style>
+    <section class="page-header hero-animated">
+        <canvas id="particleCanvas"></canvas>
+        <div class="hero-inner" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 100px 20px;">
+            <div style="max-width: 950px;">
+                <h1 class="about-hero-title" data-tr="Hakkımızda" data-en="About">Hakkımızda</h1>
+                <p class="about-hero-subtitle" data-tr="Çağrı merkezi sektöründe 15 yıldan fazla deneyim ve yapay zeka teknolojisinin gücünü birleştirerek, işletmelerin müşteri hizmetlerini dönüştürüyoruz. Güvenilir, verimli ve ölçeklenebilir çözümler sunuyoruz." data-en="With over 15 years of call center expertise combined with advanced AI technology, we transform customer service operations. We deliver reliable, efficient, and scalable solutions.">Çağrı merkezi sektöründe 15 yıldan fazla deneyim ve yapay zeka teknolojisinin gücünü birleştirerek, işletmelerin müşteri hizmetlerini dönüştürüyoruz. Güvenilir, verimli ve ölçeklenebilir çözümler sunuyoruz.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-content" style="padding:60px 4%; max-width:1300px; margin:0 auto;">
+        <!-- Mission & Vision Cards -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-bottom:80px;">
+            <div class="about-card" style="padding:32px; border-radius:12px; background:rgba(0,212,255,0.05); border:1px solid rgba(0,212,255,0.15); animation:slideInLeft 0.6s ease-out;">
+                <h2 style="font-size:1.8rem; margin-bottom:16px; color:var(--accent);" data-tr="Misyonumuz" data-en="Our Mission">Misyonumuz</h2>
+                <p style="font-size:1rem; line-height:1.8; color:rgba(10,34,48,0.85);" data-tr="Target Tech olarak yapay zeka teknolojilerini kullanarak çağrı merkezi operasyonlarını optimize etmek, verimliliği artırmak ve müşteri deneyimini üst seviyeye çıkarmaktır." data-en="As Target Tech, our mission is to optimize call center operations, increase efficiency, and elevate customer experience using AI technologies.">Target Tech olarak yapay zeka teknolojilerini kullanarak çağrı merkezi operasyonlarını optimize etmek, verimliliği artırmak ve müşteri deneyimini üst seviyeye çıkarmaktır.</p>
+            </div>
+            <div class="about-card" style="padding:32px; border-radius:12px; background:rgba(0,212,255,0.05); border:1px solid rgba(0,212,255,0.15); animation:slideInRight 0.6s ease-out;">
+                <h2 style="font-size:1.8rem; margin-bottom:16px; color:var(--accent);" data-tr="Vizyonumuz" data-en="Our Vision">Vizyonumuz</h2>
+                <p style="font-size:1rem; line-height:1.8; color:rgba(10,34,48,0.85);" data-tr="Çağrı merkezi sektöründe yapay zeka entegrasyonunda global bir lider olmak ve müşteri hizmetleri alanında dijital dönüşümün öncü ismi haline gelmektir." data-en="To become a global leader in AI integration in the call center sector and a pioneer in digital transformation in customer service.">Çağrı merkezi sektöründe yapay zeka entegrasyonunda global bir lider olmak ve müşteri hizmetleri alanında dijital dönüşümün öncü ismi haline gelmektir.</p>
+            </div>
+        </div>
+
+        <!-- Values Section -->
+        <div style="margin-bottom:80px; margin-top:80px;">
+            <h2 style="font-size:2.2rem; text-align:center; margin-bottom:48px; background:linear-gradient(90deg, #6c63ff, var(--accent)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;" data-tr="Değerlerimiz" data-en="Our Values">Değerlerimiz</h2>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:28px; max-width:1000px; margin:0 auto;">
+                <div style="text-align:center; padding:32px 24px; border-radius:12px; background:#fff; box-shadow:0 4px 12px rgba(0,0,0,0.08); transition:all 0.4s cubic-bezier(0.4,0,0.2,1); border-top:4px solid var(--accent); cursor:pointer; position:relative; overflow:hidden;" class="value-card" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 24px rgba(0,212,255,0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)';">
+                    <i class="fas fa-lightbulb" style="font-size:3rem; color:var(--accent); margin-bottom:16px; display:block;"></i>
+                    <h3 style="font-size:1.3rem; margin-bottom:12px; color:#1a1a2e; font-weight:700;" data-tr="İnovasyon" data-en="Innovation">İnovasyon</h3>
+                    <p style="font-size:0.95rem; color:#666; line-height:1.6; margin:0;" data-tr="Sürekli olarak yeni teknolojileri araştırır ve çözümlerimizi geliştiririz." data-en="We continuously research new technologies and develop our solutions.">Sürekli olarak yeni teknolojileri araştırır ve çözümlerimizi geliştiririz.</p>
+                    <div style="margin-top:16px; opacity:0; transition:opacity 0.3s;" class="value-action">
+                        <button style="background:linear-gradient(135deg, var(--accent), #0099cc); color:#fff; border:none; padding:10px 20px; border-radius:6px; font-weight:600; cursor:pointer; font-size:0.9rem;">Daha Fazla</button>
+                    </div>
+                </div>
+
+                <div style="text-align:center; padding:32px 24px; border-radius:12px; background:#fff; box-shadow:0 4px 12px rgba(0,0,0,0.08); transition:all 0.4s cubic-bezier(0.4,0,0.2,1); border-top:4px solid var(--accent); cursor:pointer; position:relative; overflow:hidden;" class="value-card" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 24px rgba(0,212,255,0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)';">
+                    <i class="fas fa-chart-line" style="font-size:3rem; color:var(--accent); margin-bottom:16px; display:block;"></i>
+                    <h3 style="font-size:1.3rem; margin-bottom:12px; color:#1a1a2e; font-weight:700;" data-tr="Veri Odaklılık" data-en="Data-Driven Approach">Veri Odaklılık</h3>
+                    <p style="font-size:0.95rem; color:#666; line-height:1.6; margin:0;" data-tr="Kararlarımızı ve çözümlerimizi veriye dayalı olarak şekillendiririz." data-en="We shape our decisions and solutions based on data.">Kararlarımızı ve çözümlerimizi veriye dayalı olarak şekillendiririz.</p>
+                    <div style="margin-top:16px; opacity:0; transition:opacity 0.3s;" class="value-action">
+                        <button style="background:linear-gradient(135deg, var(--accent), #0099cc); color:#fff; border:none; padding:10px 20px; border-radius:6px; font-weight:600; cursor:pointer; font-size:0.9rem;">Daha Fazla</button>
+                    </div>
+                </div>
+
+                <div style="text-align:center; padding:32px 24px; border-radius:12px; background:#fff; box-shadow:0 4px 12px rgba(0,0,0,0.08); transition:all 0.4s cubic-bezier(0.4,0,0.2,1); border-top:4px solid var(--accent); cursor:pointer; position:relative; overflow:hidden;" class="value-card" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 24px rgba(0,212,255,0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)';">
+                    <i class="fas fa-users" style="font-size:3rem; color:var(--accent); margin-bottom:16px; display:block;"></i>
+                    <h3 style="font-size:1.3rem; margin-bottom:12px; color:#1a1a2e; font-weight:700;" data-tr="Müşteri Odaklılık" data-en="Customer Focus">Müşteri Odaklılık</h3>
+                    <p style="font-size:0.95rem; color:#666; line-height:1.6; margin:0;" data-tr="Müşterilerimizin başarısı bizim başarımızdır." data-en="Our customers' success is our success.">Müşterilerimizin başarısı bizim başarımızdır.</p>
+                    <div style="margin-top:16px; opacity:0; transition:opacity 0.3s;" class="value-action">
+                        <button style="background:linear-gradient(135deg, var(--accent), #0099cc); color:#fff; border:none; padding:10px 20px; border-radius:6px; font-weight:600; cursor:pointer; font-size:0.9rem;">Daha Fazla</button>
+                    </div>
+                </div>
+
+                <div style="text-align:center; padding:32px 24px; border-radius:12px; background:#fff; box-shadow:0 4px 12px rgba(0,0,0,0.08); transition:all 0.4s cubic-bezier(0.4,0,0.2,1); border-top:4px solid var(--accent); cursor:pointer; position:relative; overflow:hidden;" class="value-card" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 12px 24px rgba(0,212,255,0.2)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)';">
+                    <i class="fas fa-shield-alt" style="font-size:3rem; color:var(--accent); margin-bottom:16px; display:block;"></i>
+                    <h3 style="font-size:1.3rem; margin-bottom:12px; color:#1a1a2e; font-weight:700;" data-tr="Güvenilirlik" data-en="Reliability">Güvenilirlik</h3>
+                    <p style="font-size:0.95rem; color:#666; line-height:1.6; margin:0;" data-tr="Verdiğimiz sözleri tutar, etik değerlere bağlı kalırız." data-en="We keep our promises and adhere to ethical values.">Verdiğimiz sözleri tutar, etik değerlere bağlı kalırız.</p>
+                    <div style="margin-top:16px; opacity:0; transition:opacity 0.3s;" class="value-action">
+                        <button style="background:linear-gradient(135deg, var(--accent), #0099cc); color:#fff; border:none; padding:10px 20px; border-radius:6px; font-weight:600; cursor:pointer; font-size:0.9rem;">Daha Fazla</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline Section (refactored) -->
+        <section class="history-timeline" aria-label="Tarihçemiz">
+            <h2 class="section-title" data-tr="Tarihçemiz" data-en="Our History">Tarihçemiz</h2>
+            <div class="timeline">
+                <div class="timeline-line" aria-hidden="true"></div>
+
+                <article class="timeline-item">
+                    <div class="timeline-icon" aria-hidden="true">
+                        <!-- thin building icon -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect x="3" y="3" width="7" height="18" rx="1"></rect>
+                            <rect x="14" y="7" width="7" height="14" rx="1"></rect>
+                            <path d="M10 7h4" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="timeline-year">2011</div>
+                        <div class="timeline-body">
+                            <h3 data-tr="Target İletişim'in Kuruluşu" data-en="Establishment of Target Communication">Target İletişim'in Kuruluşu</h3>
+                            <p data-tr="Target İletişim, çağrı merkezi sektöründe öncü olma hedefiyle yola çıktı. Uzman kadrosuyla rekabet avantajı ve katma değer oluşturma hedefi ile ilerleyerek sektörde hızla tanındı." data-en="Target Communication was founded with the goal of becoming a pioneer in the call center sector. With its expert team, it quickly became recognized in the sector by progressing with the aim of creating competitive advantage and added value.">Target İletişim, çağrı merkezi sektöründe öncü olma hedefiyle yola çıktı. Uzman kadrosuyla rekabet avantajı ve katma değer oluşturma hedefi ile ilerleyerek sektörde hızla tanındı.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-icon" aria-hidden="true">
+                        <!-- thin growth icon -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M3 17l6-6 4 4 8-8" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="timeline-year">2015</div>
+                        <div class="timeline-body">
+                            <h3 data-tr="Sektörde Hızlı Büyüme" data-en="Rapid Growth in the Sector">Sektörde Hızlı Büyüme</h3>
+                            <p data-tr="Personel sayısı giderek artırılarak, şirketimiz sektörün öncü kuruluşlarından biri haline geldi. Müşteri portföyümüz genişleyerek farklı sektörlerden önemli markaları da kapsamaya başladı." data-en="With steadily increasing staff, our company became one of the leading organizations in the sector. Our customer portfolio expanded to include major brands from different sectors.">Personel sayısı giderek artırılarak, şirketimiz sektörün öncü kuruluşlarından biri haline geldi. Müşteri portföyümüz genişleyerek farklı sektörlerden önemli markaları da kapsamaya başladı.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-icon" aria-hidden="true">
+                        <!-- thin target/vision icon -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9" />
+                            <path d="M12 8v8M8 12h8" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-body">
+                            <h3 data-tr="Teknoloji Vizyonu" data-en="Technology Vision">Teknoloji Vizyonu</h3>
+                            <p data-tr="Teknolojik gelişmeleri yakından takip eden şirketimiz, yapay zeka çözümlerinin çağrı merkezi operasyonlarına sağlayacağı katma değeri öngörerek AR-GE çalışmalarına başladı." data-en="Following technological developments closely, our company foresaw the added value that AI solutions would bring to call center operations and started R&D work.">Teknolojik gelişmeleri yakından takip eden şirketimiz, yapay zeka çözümlerinin çağrı merkezi operasyonlarına sağlayacağı katma değeri öngörerek AR-GE çalışmalarına başladı.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-icon" aria-hidden="true">
+                        <!-- thin rocket / launch icon -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M2 21s4-1 6-3 3-4 3-4 2 0 4-2 3-6 3-6-4 1-6 3-4 3-4 3-2 1-3 3-1 4-3 6z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="timeline-year">2023</div>
+                        <div class="timeline-body">
+                            <h3 data-tr="Target Tech'in Kuruluşu" data-en="Establishment of Target Tech">Target Tech'in Kuruluşu</h3>
+                            <p data-tr="Yapay Zeka dünyası ile çağrı merkezi sektörünü birleştirmeyi hedefleyerek Target Teknoloji kuruldu. Şirketimiz, yenilikçi yapay zeka çözümleri ile müşteri hizmetleri alanında dijital dönüşümü öncülük etmeyi amaçlamaktadır." data-en="Target Technology was established with the goal of combining the world of Artificial Intelligence with the call center sector. Our company aims to lead digital transformation in customer service with innovative AI solutions.">Yapay Zeka dünyası ile çağrı merkezi sektörünü birleştirmeyi hedefleyerek Target Teknoloji kuruldu. Şirketimiz, yenilikçi yapay zeka çözümleri ile müşteri hizmetleri alanında dijital dönüşümü öncülük etmeyi amaçlamaktadır.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-icon" aria-hidden="true">
+                        <!-- thin prototype / chip icon -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <rect x="6" y="6" width="12" height="12" rx="2" />
+                            <path d="M9 9h6M9 12h6M9 15h6" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-body">
+                            <h3 data-tr="İlk Prototip" data-en="First Prototype">İlk Prototip</h3>
+                            <p data-tr="İlk yapay zeka tabanlı müşteri temsilcisi yazılımımızın prototipini geliştirdik ve başarılı test sonuçları elde ettik. Bu teknolojiyi optimize ederek sektör standartlarını yükseltmeye hazırlanıyoruz." data-en="We developed the first prototype of our AI-powered customer representative software and achieved successful test results. We are preparing to optimize this technology and raise industry standards.">İlk yapay zeka tabanlı müşteri temsilcisi yazılımımızın prototipini geliştirdik ve başarılı test sonuçları elde ettik. Bu teknolojiyi optimize ederek sektör standartlarını yükseltmeye hazırlanıyoruz.</p>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="timeline-item">
+                    <div class="timeline-icon" aria-hidden="true">
+                        <!-- thin clock / soon icon -->
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9" />
+                            <path d="M12 7v5l3 2" />
+                        </svg>
+                    </div>
+                    <div>
+                        <div class="timeline-year">2025</div>
+                        <div class="timeline-body">
+                            <h3 data-tr="Yakında..." data-en="Coming Soon...">Yakında...</h3>
+                            <p data-tr="Yapay zeka tabanlı müşteri temsilcimizi sektörün hizmetine sunmayı hedefliyoruz. Bu teknoloji, müşteri hizmetleri alanında yeni bir çağın başlangıcı olacak." data-en="We aim to deliver our AI-powered customer representative to the industry. This technology will be the beginning of a new era in customer service.">Yapay zeka tabanlı müşteri temsilcimizi sektörün hizmetine sunmayı hedefliyoruz. Bu teknoloji, müşteri hizmetleri alanında yeni bir çağın başlangıcı olacak.</p>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+                <!-- duplicate small timeline items removed to avoid repeating entries -->
+            </div>
+        </div>
+    </section>
+
+        <section class="featured-image" style="text-align:center; margin:2rem 0;">
+            <img 
+                src="images/gorsel1.jpeg" 
+                alt="Team Image"
+                style="max-width:800px; width:100%; height:auto; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);" 
+            />
+        </section>
+
+        <div class="about-team">
+            <h2 data-tr="Yönetim Ekibimiz" data-en="Our Management Team">Yönetim Ekibimiz</h2>
+            <p class="team-intro" data-tr="Target Tech'in başarısını yönetecek deneyimli ve dinamik ekibimiz" data-en="Our experienced and dynamic team leading Target Tech's success">Target Tech'in başarısını yönetecek deneyimli ve dinamik ekibimiz</p>
+            <div class="team-container">
+                <div class="team-member">
+                    <div class="role-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h3 data-tr="Hüseyin Özdemir" data-en="Hüseyin Özdemir">Hüseyin Özdemir</h3>
+                    <div class="role-badge">
+                        <span class="role-title" data-tr="CEO" data-en="CEO">CEO</span>
+                        <span class="role-subtitle">Chief Executive Officer</span>
+                    </div>
+                    <p class="team-desc" data-tr="Sektördeki +30 yıllık deneyimiyle Target Tech'in vizyonunu şekillendiriyor." data-en="Shaping Target Tech's vision with 30+ years of industry experience.">Sektördeki +30 yıllık deneyimiyle Target Tech'in vizyonunu şekillendiriyor.</p>
+                    <a href="https://www.linkedin.com/in/huseyin-ozdemir-8b711633/" target="_blank" class="linkedin-link">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                </div>
+                <div class="team-member">
+                    <div class="role-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3 data-tr="Oğuz Günyol" data-en="Oğuz Günyol">Oğuz Günyol</h3>
+                    <div class="role-badge">
+                        <span class="role-title" data-tr="CTO" data-en="CTO">CTO</span>
+                        <span class="role-subtitle">Chief Technology Officer</span>
+                    </div>
+                    <p class="team-desc" data-tr="Call center sistemlerinin teknolojik dönüşümünde +15 yıllık tecrübesiyle sistem çözümlerinin geliştirilmesine öncülük ediyor." data-en="Leading the development of system solutions with 15+ years of experience in call center technology transformation.">Call center sistemlerinin teknolojik dönüşümünde +15 yıllık tecrübesiyle sistem çözümlerinin geliştirilmesine öncülük ediyor.</p>
+                    <a href="https://www.linkedin.com/in/o%C4%9Fuz-g%C3%BCnyol/" target="_blank" class="linkedin-link">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                </div>
+                <div class="team-member">
+                    <div class="role-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 data-tr="Çağrı Berat Öztürk" data-en="Çağrı Berat Öztürk">Çağrı Berat Öztürk</h3>
+                    <div class="role-badge">
+                        <span class="role-title" data-tr="Data Scientist & AI Engineer" data-en="Data Scientist & AI Engineer">Data Scientist & AI Engineer</span>
+                        <span class="role-subtitle">Yapay Zeka Uzmanı</span>
+                    </div>
+                    <p class="team-desc" data-tr="Veri bilimi ve yapay zeka alanındaki uzmanlığıyla, çağrı merkezi operasyonlarına yönelik yenilikçi stratejiler geliştirerek kurumsal verimliliğe katkı sağlamaktadır." data-en="Contributing to corporate efficiency by developing innovative strategies for call center operations with expertise in data science and AI.">Veri bilimi ve yapay zeka alanındaki uzmanlığıyla, çağrı merkezi operasyonlarına yönelik yenilikçi stratejiler geliştirerek kurumsal verimliliğe katkı sağlamaktadır.</p>
+                    <a href="https://www.linkedin.com/in/%C3%A7a%C4%9Fri-berat-%C3%B6zt%C3%BCrk-28a374244/" target="_blank" class="linkedin-link">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <div class="logo">
+                    <h1 data-tr="Target Tech" data-en="Target Tech">Target Tech</h1>
+                    <img src="images/favicon.ico" alt="Target Tech">
+                </div>
+                <p data-tr="Call center operasyonlarını yapay zeka ile dönüştüren, potansiyel tespiti ve analitik çözümleriyle müşteri deneyimini bir üst seviyeye taşıyan yenilikçi teknoloji sağlayıcınız." data-en="Innovative technology provider transforming call center operations with AI, elevating customer experience through intelligence and analytics.">Call center operasyonlarını yapay zeka ile dönüştüren, potansiyel tespiti ve analitik çözümleriyle müşteri deneyimini bir üst seviyeye taşıyan yenilikçi teknoloji sağlayıcınız.</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3 data-tr="Hızlı Erişim" data-en="Quick Links">Hızlı Erişim</h3>
+                <ul>
+                    <li><a href="index.html" data-tr="Ana Sayfa" data-en="Home">Ana Sayfa</a></li>
+                    <li><a href="hakkimizda.html" data-tr="Hakkımızda" data-en="About">Hakkımızda</a></li>
+                    <li><a href="iletisim.html" data-tr="İletişim" data-en="Contact">İletişim</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3 data-tr="İletişim" data-en="Contact">İletişim</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Barış Mah. Koşu Yolu Cad. ARGE VE İNOVASYON Binası No 26 İç Kapı No:48 Gebze/Kocaeli</p>
+                <p><i class="fas fa-phone"></i> +90 549 820 40 60</p>
+                <p><i class="fas fa-envelope"></i> github@targetteknoloji.com</p>
+            </div>
+            <div class="footer-column">
+                <h3 data-tr="Bültene Katıl" data-en="Join Newsletter">Bültene Katıl</h3>
+                <p data-tr="En son haberler ve güncellemeler için abone olun." data-en="Subscribe for latest news and updates.">En son haberler ve güncellemeler için abone olun.</p>
+                <form class="newsletter" onsubmit="event.preventDefault(); alert('Teşekkürler! Aboneliğiniz alındı.');">
+                    <input type="email" placeholder="E-posta adresiniz" required />
+                    <button type="submit" data-tr="Abone Ol" data-en="Subscribe">Abone Ol</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p data-tr="&copy; 2025 Target Tech Yazılım. Tüm Hakları Saklıdır." data-en="&copy; 2025 Target Tech Software. All Rights Reserved.">&copy; 2025 Target Tech Yazılım. Tüm Hakları Saklıdır.</p>
+        </div>
+    </footer>
+
+    <div style="max-width:1200px;margin:14px auto 36px;display:flex;gap:18px;justify-content:center;align-items:center;">
+        <img src="images/partners/partner1.svg" alt="Partner 1" style="height:40px;opacity:0.95;" />
+        <img src="images/partners/partner2.svg" alt="Partner 2" style="height:40px;opacity:0.95;" />
+    </div>
+
+    <script>
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let particles = [];
+        const config = {
+            particleCount: 80,         
+            maxDistance: 150,          
+            particleSize: 4,           
+            particleSpeed: 0.8,        
+            particleColor: '#ff006e',  
+        };
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * config.particleSpeed;
+                this.vy = (Math.random() - 0.5) * config.particleSpeed;
+            }
+            update() {
+                if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+                if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+
+                this.x += this.vx;
+                this.y += this.vy;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, config.particleSize, 0, Math.PI * 2);
+                ctx.fillStyle = config.particleColor;
+                ctx.fill();
+                ctx.closePath();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < config.particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach((p) => {
+                p.update();
+                p.draw();
+            });
+
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < config.maxDistance) {
+                        const alpha = 1 - dist / config.maxDistance; 
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(255, 0, 110, ${alpha})`; 
+                        ctx.lineWidth = 1.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                        ctx.closePath();
+                    }
+                }
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        initParticles();
+        animate();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="js/script.js?v=2.0"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>
