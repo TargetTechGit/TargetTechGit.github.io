@@ -640,14 +640,16 @@ function setupMobileMenu() {
   const burger = document.querySelector('.burger');
   const nav = document.querySelector('.nav-links');
 
-  if (burger) {
+  if (burger && nav) {
     burger.addEventListener('click', () => {
+      nav.classList.toggle('active');
       nav.classList.toggle('nav-active');
       burger.classList.toggle('toggle');
     });
 
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
+        nav.classList.remove('active');
         nav.classList.remove('nav-active');
         burger.classList.remove('toggle');
       });
