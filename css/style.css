@@ -1686,7 +1686,8 @@ body.dark-mode footer {
         z-index: 999;
     }
 
-    .nav-links.active {
+    .nav-links.active,
+    .nav-links.nav-active {
         display: flex;
     }
 
